@@ -21,7 +21,6 @@ class Disease {
         this.infectedTerminal = this.infectedSick;
         this.infectedSick = this.infectedNew;
         this.infectedNew = this.spreadRate * 4;
-        console.log(this);
       }, 20000);
     }
   }
@@ -31,6 +30,15 @@ class Disease {
       this.spreadRate++;
     }, 60000);
   }
+
+//   diseaseSlow(number){
+//     let that = this;
+//     return function(){
+//       that.infectedTerminal -= number;
+//       return `The possible death rate has been reduced by ${amount}%.`
+//     }
+//   }
+//   // disease.doctorSlow = diseaseSlow(player.slowSpread);
 }
 
 
