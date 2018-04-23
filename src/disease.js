@@ -9,8 +9,7 @@ class Disease {
     this.infectedDead = 0;
     this.cure = 0;
   }
-
-  diseaseSpread() {
+diseaseSpread(){
     if (this.infectedDead >= 100) {
       return "Game Over, everyone died.";
     } else if (this.cure >= 100) {

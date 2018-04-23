@@ -5,6 +5,29 @@
     <title></title>
   </head>
   <body>
+    <div class="container">
+      <div class="jumbotron">
+        <p>Player can make one of two spins: for knowledge or for skill. Skill is used to slow the advancement of the disease by treating patients. Knowledge is used to research a cure for the disease. If disease cure gets to 100, you win. If the death rate of the disease reaches 100, you lose. Good luck. &#9760  </p>
+      </div>
+      <div class="col">
+        <h2>Disease</h2>
+        <p>Name:<span id="name"></span></p>
+        <p>Spread Rate:<span id="rate"></span></p>
+        <p>New infections:<span id="new"></span></p>
+        <p>Sick percentage:<span id="sick"></span></p>
+        <p>Terminal percentage:<span id="terminal"></span></p>
+        <p>Dead percentage:<span id="dead"></span></p>
+        <p>Cure progress:<span id="cure"></span></p>
+      </div>
+      <div class="col spin">
+        <button type="button" name="button" id="knowledgeSpin">Knowledge Spin</button>
+        <button type="button" name="button" id="skillSpin">Skill Spin</button>
+      </div>
+      <div class="col use">
+        <button type="button" name="button" id="research">Research a Cure</button>
+        <button type="button" name="button" id="spread">Treat Patients</button>
+      </div>
+    </div>
 
   </body>
 </html>
