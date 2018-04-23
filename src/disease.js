@@ -14,10 +14,12 @@ class Disease {
       return "Game Over, everyone died.";
     } else {
       setInterval(() => {
-        // this.infectedDead += this.infectedTerminal;
-        // this.infectedTerminal += this.infectedSick;
-        // this.infectedSick += this.infectedNew;
-        this.infectedNew += this.spreadRate * 4;
+        // debugger;
+        this.infectedDead += this.infectedTerminal;
+        this.infectedTerminal = this.infectedSick;
+        this.infectedSick = this.infectedNew;
+        this.infectedNew = this.spreadRate * 4;
+        console.log(this);
       }, 20000);
     }
   }

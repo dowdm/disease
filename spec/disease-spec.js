@@ -1,11 +1,11 @@
 import { Disease } from './../src/disease.js';
 
 describe('Disease', function() {
-  let flu = new Disease("flu");
+  let flu;
 
   beforeEach(function() {
     jasmine.clock().install();
-    let flu = new Disease("flu");
+    flu = new Disease("flu");
   });
 
   afterEach(function() {
@@ -21,27 +21,43 @@ describe('Disease', function() {
 
   it('should have a name and a newly infected level of 4 after 20 seconds', function() {
     flu.diseaseSpread();
+    flu.spreadRateIncrease();
     jasmine.clock().tick(20001);
-    expect(flu.name).toEqual("flu");
     expect(flu.infectedNew).toEqual(4);
     expect(flu.infectedSick).toEqual(0);
     expect(flu.infectedTerminal).toEqual(0);
     expect(flu.infectedDead).toEqual(0);
-    console.log(flu);
   });
-  // it('should get very hungry if the food level drops below zero', function() {
-  //   fuzzy.foodLevel = 0;
-  //   expect(fuzzy.didYouGetEaten()).toEqual(true);
-  // });
-  //
-  // it('should get very hungry if 10 seconds pass without feeding', function() {
-  //   jasmine.clock().tick(10001);
-  //   expect(fuzzy.didYouGetEaten()).toEqual(true);
-  // });
-  //
-  // it('should have a food level of ten if it is fed', function() {
-  //   jasmine.clock().tick(9001);
-  //   fuzzy.feed();
-  //   expect(fuzzy.foodLevel).toEqual(10);
-  // });
+
+  it('should have a name and a newly infected level of 4 after 40 seconds', function() {
+    flu.diseaseSpread();
+    flu.spreadRateIncrease();
+    jasmine.clock().tick(40001);
+    expect(flu.infectedNew).toEqual(4);
+    expect(flu.infectedSick).toEqual(4);
+    expect(flu.infectedTerminal).toEqual(0);
+    expect(flu.infectedDead).toEqual(0);
+  });
+
+  it('should have a name and a newly infected level of 8 after 60 seconds', function() {
+    flu.diseaseSpread();
+    flu.spreadRateIncrease();
+    jasmine.clock().tick(60001);
+    expect(flu.spreadRate).toEqual(2)
+    expect(flu.infectedNew).toEqual(8);
+    expect(flu.infectedSick).toEqual(4);
+    expect(flu.infectedTerminal).toEqual(4);
+    expect(flu.infectedDead).toEqual(0);
+  });
+
+  it('should have a dead level of 16 after 2 minutes', function() {
+    flu.diseaseSpread();
+    flu.spreadRateIncrease();
+    jasmine.clock().tick(120001);
+    expect(flu.spreadRate).toEqual(3)
+    expect(flu.infectedNew).toEqual(12);
+    expect(flu.infectedSick).toEqual(8);
+    expect(flu.infectedTerminal).toEqual(8);
+    expect(flu.infectedDead).toEqual(16);
+  });
 });
