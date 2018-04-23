@@ -7,14 +7,16 @@ class Disease {
     this.infectedSick = 0;
     this.infectedTerminal = 0;
     this.infectedDead = 0;
+    this.cure = 0;
   }
 
   diseaseSpread() {
     if (this.infectedDead >= 100) {
       return "Game Over, everyone died.";
+    } else if (this.cure >= 100) {
+      return "You found the cure!";
     } else {
       setInterval(() => {
-        // debugger;
         this.infectedDead += this.infectedTerminal;
         this.infectedTerminal = this.infectedSick;
         this.infectedSick = this.infectedNew;
