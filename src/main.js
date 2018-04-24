@@ -6,7 +6,7 @@ import './styles.css';
 import $ from 'jquery';
 const mapsapi = require( 'google-maps-api' )(process.env.GOOGLE_MAP_KEY);
 
-function mapFunction () {
+function mapFunction (tickRadius) {
   mapsapi().then( function( maps )  {
     let map = new maps.Map(document.querySelector('#map'), {
       center: {
@@ -15,13 +15,29 @@ function mapFunction () {
       },
       zoom: 2
     });
+    let marker = new maps.Circle({
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35,
+      radius: tickRadius,
+      map: map,
+      center: {lat: 45, lng: -122}
+    });
   });
 }
 
 
 $(document).ready(function() {
   let flu = new Disease("Flu");
-  mapFunction();
+  let tickRadius = 200000;
+  mapFunction(tickRadius);
+
+  setInterval(function () {
+    tickRadius += 80000;
+    mapFunction(tickRadius);
+  }, 1000);
   flu.diseaseSpread();
   flu.spreadRateIncrease();
   setInterval(function(){
