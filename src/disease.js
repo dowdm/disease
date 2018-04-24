@@ -10,23 +10,33 @@ class Disease {
     this.cure = 0;
   }
 diseaseSpread(){
-    if (this.infectedDead >= 100) {
-      return "Game Over, everyone died.";
+  setInterval(() => {
+    if ((this.infectedDead + this.infectedTerminal) >= 100) {
+      const dead = "Game Over, everyone died.";
+      this.infectedDead = 100;
+      this.infectedTerminal = 0;
+      this.infectedSick = 0;
+      this.infectedNew = 0;
+      this.spreaRate = 1;
+      return dead;
     } else if (this.cure >= 100) {
       return "You found the cure!";
     } else {
-      setInterval(() => {
         this.infectedDead += this.infectedTerminal;
         this.infectedTerminal = this.infectedSick;
         this.infectedSick = this.infectedNew;
         this.infectedNew = this.spreadRate * 4;
-      }, 20000);
-    }
+      }
+    }, 20000);
   }
 
   spreadRateIncrease() {
     setInterval(() => {
-      this.spreadRate++;
+      if (this.infectedDead >= 100) {
+        this.spreadRate = 0;
+      } else {
+        this.spreadRate++;
+      }
     }, 60000);
   }
 
